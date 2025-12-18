@@ -1,0 +1,98 @@
+/* asset/css/style.css */
+
+:root {
+    --primary: #0088CC; /* 翰林風格藍 */
+    --primary-dark: #006699;
+    --secondary: #FF8800; /* 重點橘 */
+    --text-main: #333333;
+    --text-sub: #666666;
+    --bg-body: #F4F6F8;
+    --bg-card: #FFFFFF;
+    --border: #E0E0E0;
+    --radius: 8px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    /* 學科色標 */
+    --c-chinese: #D84315;
+    --c-english: #1565C0;
+    --c-math: #F9A825;
+    --c-science: #2E7D32;
+    --c-social: #6A1B9A;
+}
+
+[data-theme="dark"] {
+    --bg-body: #121212;
+    --bg-card: #1E1E1E;
+    --text-main: #E0E0E0;
+    --text-sub: #A0A0A0;
+    --border: #333333;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Noto Sans TC", sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+/* 載入動畫 */
+.loading-screen { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg-body); }
+.loader { width: 40px; height: 40px; border: 4px solid #ddd; border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* 導覽列 */
+.navbar { background: var(--bg-card); height: 64px; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+
+/* 按鈕與表單 */
+.btn { padding: 8px 20px; border-radius: 4px; border: 1px solid transparent; cursor: pointer; font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: transparent; border-color: #ccc; color: var(--text-sub); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.form-input { padding: 10px; border: 1px solid var(--border); border-radius: 4px; width: 100%; font-size: 1rem; background: var(--bg-card); color: var(--text-main); }
+
+/* 儀表板 */
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.dashboard-banner { background: linear-gradient(120deg, #0088CC, #005577); color: white; padding: 40px; border-radius: var(--radius); margin-bottom: 32px; box-shadow: var(--shadow); }
+.filter-bar { display: flex; gap: 16px; margin-bottom: 32px; background: var(--bg-card); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+/* 課程卡片 */
+.subject-section { margin-bottom: 48px; }
+.subject-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border-left: 5px solid; padding-left: 12px; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.course-card { background: var(--bg-card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; border: 1px solid var(--border); cursor: pointer; }
+.course-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.course-thumb { height: 160px; overflow: hidden; position: relative; }
+.course-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.course-badge { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
+.course-info { padding: 16px; }
+.course-title { font-weight: bold; margin-bottom: 8px; line-height: 1.4; height: 3em; overflow: hidden; }
+.progress-container { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; margin-top: 12px; }
+.progress-bar { height: 100%; background: var(--secondary); width: 0%; }
+
+/* 學習介面 (Split View) */
+.learn-layout { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; height: calc(100vh - 100px); }
+.sidebar { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); display: flex; flex-direction: column; height: 100%; border: 1px solid var(--border); }
+.sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); font-weight: bold; background: #fafafa; }
+.unit-list { overflow-y: auto; flex: 1; }
+.unit-item { padding: 14px 16px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; font-size: 0.95rem; }
+.unit-item:hover { background: #f0f8ff; }
+.unit-item.active { background: #e1f5fe; color: var(--primary); font-weight: bold; border-left: 4px solid var(--primary); }
+.status-icon { color: #ccc; }
+.unit-item.done .status-icon { color: var(--primary); }
+
+.content-area { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 32px; height: 100%; overflow-y: auto; border: 1px solid var(--border); }
+.lesson-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.lesson-title { font-size: 1.8rem; font-weight: bold; margin-bottom: 8px; }
+
+/* 題目與內容樣式 */
+.concept-block { background: #F9FAFB; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary); margin: 20px 0; }
+.concept-title { font-weight: bold; color: var(--primary-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.quiz-block { background: #fff; border: 1px solid var(--border); padding: 24px; border-radius: 8px; margin-bottom: 24px; }
+.quiz-q { font-size: 1.1rem; font-weight: bold; margin-bottom: 16px; line-height: 1.5; }
+.quiz-opt { padding: 12px 16px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; background: white; }
+.quiz-opt:hover { background: #f5f5f5; border-color: #999; }
+.quiz-opt.correct { background: #E8F5E9; border-color: #4CAF50; color: #1B5E20; }
+.quiz-opt.wrong { background: #FFEBEE; border-color: #E53935; color: #B71C1C; }
+.quiz-exp { margin-top: 16px; padding: 16px; background: #FFF8E1; border-radius: 6px; border: 1px solid #FFECB3; display: none; }
+
+/* RWD */
+@media (max-width: 900px) { .learn-layout { grid-template-columns: 1fr; height: auto; } .sidebar { height: 400px; } }
